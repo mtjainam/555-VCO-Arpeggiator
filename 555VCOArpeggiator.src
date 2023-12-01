@@ -1,0 +1,262 @@
+//Library import for LCD panel
+#include <LiquidCrystal.h> 
+
+//Pins that use LCD panel
+LiquidCrystal lcd(1, 2, 4, 5, 6, 7);  
+
+//Pins for Frequency and Buzzers
+#define pulse_ip 3  
+#define buzzer  9
+#define pulse_ip1 10
+#define buzzer1  8
+#define pulse_ip2 12
+#define buzzer2  13
+
+//Declaring variables and assigning them
+int ontime1, offtime1, ontime2, offtime2, freq1, period1, freq2, period2, t1, t2, t3;
+
+const int a = 200;
+const int b = 600;
+String a1, a2, a3;
+
+void setup()
+{
+  //Setting pin mode for pins
+  pinMode(pulse_ip, OUTPUT);
+  pinMode(pulse_ip1, INPUT);
+  pinMode(pulse_ip2, INPUT);
+  pinMode(buzzer, OUTPUT);
+  pinMode(buzzer1, OUTPUT);
+  pinMode(buzzer2, OUTPUT);
+
+  //Clears the LCD monitor
+  lcd.begin(16,2);
+  lcd.clear();
+}
+
+
+void loop()
+{
+  //Math for frequency
+  ontime1 = pulseIn(pulse_ip1, HIGH);
+  offtime1 = pulseIn(pulse_ip1, LOW);
+  period1 = ontime1+offtime1;
+  freq1 = 1000000.0/period1;
+
+  ontime2 = pulseIn(pulse_ip2, HIGH);
+  offtime2 = pulseIn(pulse_ip2, LOW);
+  period2 = ontime2+offtime2;
+  freq2 = 1000000.0/period2;
+
+
+//Speaker 3
+if(freq2 < 500){
+ a3 = "LOW";
+  t3 = 523;
+ 
+ 
+}
+if(freq2 >= 500 && freq2 < 535){
+ a3 = "C";
+  t3 = 523;
+}
+if(freq2 >= 535 && freq2 < 575){
+ a3 = "C#/D|";
+  t3 = 554;
+ 
+}
+if (freq2 >=575 && freq2 < 605){
+ a3 = "D";
+  t3 = 587;
+}
+ if (freq2 >= 605 && freq2 < 635){
+ a2 = "D#/E|";
+  t3 = 622;
+}
+if (freq2 >= 635 && freq2 < 675){
+ a3 = "E";
+  t3 = 659;
+}
+if (freq2 >= 675 && freq2 < 715){
+ a3 = "F";
+  t3 = 698;
+}
+ if (freq2 >= 715 && freq2 < 760){
+ a3 = "F#/G|";
+  t3 = 739;
+}
+ if (freq2 >= 760 && freq2 < 800){
+ a3 = "G";
+ t3 = 783;
+}
+
+if (freq2 >= 800 && freq2 < 850){
+ a3 = "G#/A|";
+  t3 = 830;
+}
+if (freq2 >= 850 && freq2 < 900){
+ a3 = "A";
+  t3 = 880;
+}
+if (freq2 >= 900 && freq2 < 950){
+ a2 = "A#/B|";
+  t3 = 932;
+}
+if (freq2 >= 950 && freq2 < 1000){
+ a3 = "B";
+  t3 = 987;
+}
+if (freq2 >= 1000){
+ a3 = "HIGH";
+  t3 = 987;
+}
+
+
+
+
+//Speaker 2
+if(freq1 < 500){
+ a2 = "LOW";
+ a1 = "F";
+
+
+ t2 = 523;
+ t1 = 698;
+}
+if(freq1 >= 500 && freq1 < 535){
+ a2 = "C";
+ a1 = "F";
+
+
+  t2 = 523;
+  t1 = 698;
+}
+if(freq1 >= 535 && freq1 < 575){
+ a2 = "C#/D|";
+ a1 = "F#/G|";
+
+
+  t2 = 554;
+  t1 = 739;
+}
+if (freq1 >=575 && freq1 < 605){
+ a2 = "D";
+ a1 = "G";
+
+
+  t2 = 587;
+  t1 = 783;
+}
+ if (freq1 >= 605 && freq1 < 635){
+ a2 = "D#/E|";
+ a1 = "G#/A|";
+
+
+  t2 = 622;
+  t1 = 830;
+}
+if (freq1 >= 635 && freq1 < 675){
+ a2 = "E";
+ a1 = "A";
+
+
+    t2 = 659;
+    t1 = 880;
+}
+if (freq1 >= 675 && freq1 < 715){
+ a2 = "F";
+ a1 = "A#/B|";
+
+
+    t2 = 698;
+    t1 = 932;
+}
+ if (freq1 >= 715 && freq1 < 760){
+ a2 = "F#/G|";
+ a1 = "B";
+
+
+    t2 = 739;
+    t1 = 987;
+}
+ if (freq1 >= 760 && freq1 < 800){
+ a2 = "G";
+ a1 = "C";
+
+
+    t2 = 783;
+    t1 = 523;
+}
+ if (freq1 >= 800 && freq1 < 850){
+ a2 = "G#/A|";
+ a1 = "C#/D|";
+
+
+    t2 = 830;
+    t1 = 554;
+}
+if (freq1 >= 850 && freq1 < 900){
+ a2 = "A";
+ a1 = "D";
+
+
+    t2 = 880;
+    t1 = 587;
+}
+if (freq1 >= 900 && freq1 < 950){
+ a2 = "A#/B|";
+ a1 = "D#/E|";
+
+
+    t2 = 932;
+    t1 = 622;
+}
+if (freq1 >= 950 && freq1 < 1000){
+ a2 = "B";
+ a1 = "E";
+
+
+    t2 = 987;
+    t1 = 659;
+}
+if (freq1 >= 1000){
+ a2 = "HIGH";
+ a1 = "E";
+
+
+    t2 = 987;
+    t1 = 659;
+}
+
+
+
+//LCD displays from variables
+lcd.begin(16,2);
+lcd.clear();
+lcd.setCursor(0,0);
+lcd.print("F:");
+lcd.setCursor(2,0);
+lcd.print(a1);
+lcd.setCursor(9,0);
+lcd.print("F:");
+lcd.setCursor(11,0);
+lcd.print(a2);
+lcd.setCursor(0,1);
+lcd.print("F:");
+lcd.setCursor(2,1);
+lcd.print(a3);
+
+//Buzzer output
+tone(buzzer2, t3,a);
+delay(b);
+noTone(buzzer2);
+ tone(buzzer1, t2,a);
+  delay(b);
+  noTone(buzzer1);
+tone(buzzer, t1,a);
+delay(b);
+noTone(buzzer);
+
+tone(pulse_ip,100,b);
+
+
